@@ -111,6 +111,9 @@ elif previous_year!='2016' and previous_year!='2017' and previous_year!='2018':
         list13 = df13.values.tolist()
         T_ph=float(list13[0][0])
             
+        #intensity
+        N_i = k_b*n_i
+            
         #Definition of sigma* - Tranverse RMS dimension
         S_s = np.sqrt((B_s*E_s)/(B_r*G_r))
 
@@ -206,6 +209,9 @@ elif current_year!='2016' and previous_year!='2017' and previous_year!='2018':
             df13 = pd.DataFrame(file2, columns=['T_ph']).dropna()
             list13 = df13.values.tolist()
             T_ph=float(list13[0][0])
+            
+            #intensity
+            N_i = k_b*n_i
             
             #Definition of sigma* - Tranverse RMS dimension
             S_s = np.sqrt((B_s*E_s)/(B_r*G_r))
@@ -725,11 +731,6 @@ elif current_year!='2016' and previous_year!='2017' and previous_year!='2018':
             
         elif (new_ta != "end" or new_ta != "End") and isanumber(new_ta) == False:   
             print('You not enter a valid input! Here what you enter:', new_ta)
-
-
-
-print(new_sample, new_Sample, Opt_Fill/3600)
-print(len(new_sample), len(new_Sample))
 
 #Verify the Total Physics time
 print('Nominal Physics time', T_ph/3600, '[h]')
