@@ -6,11 +6,12 @@ Thesis Project
 
 ## Lists of files present in the directory
 
+  - [Optimize](https://github.com/GiuliaFaletti/LuminosityOptimization/blob/main/Optimize.py): Complete user friendly code that halp the user to go through different phases of the thesis work;
+  - [OnlineOptimize](https://github.com/GiuliaFaletti/LuminosityOptimization/blob/main/OnlineOptimize.py): Code that analysing the turnaround times is able to return the optimized values of fill time;
   - [LoadData](https://github.com/GiuliaFaletti/LuminosityOptimization/blob/main/LoadData.py): Module that defines different functions able to extract data from FillData.xlsx and TurnAroundData.xlsx. It is important to say that the loaded data have been previously cut considering only the turnaround times that can be used for statistical purposes, and the fills defined "physics fills";
   - [LuminosityOptimization](https://github.com/GiuliaFaletti/LuminosityOptimization/blob/main/LuminosityOptimization.py): Module that defines different functions that evaluate the optimization model parameters, like the optimized fill times;
   - [Models](https://github.com/GiuliaFaletti/LuminosityOptimization/blob/main/Models.py): Module that defines the fit functions for the statistical analysis of the turnaround times;
   - [CreatingVariableBins](https://github.com/GiuliaFaletti/LuminosityOptimization/blob/main/CreatingVariableBins.py): Module that define the algorithm to create variable bins in the histograms;
-  - [OnlineOptimize](https://github.com/GiuliaFaletti/LuminosityOptimization/blob/main/OnlineOptimize.py): Code that analysing the turnaround times is able to return the optimized values of fill time;
   - [FillsLuminosityEvolution](https://github.com/GiuliaFaletti/LuminosityOptimization/blob/main/FillsLuminosityEvolution.py): Code that extracts from ATLAS_fill_{year} the Luminosity and Time arrays and plots them on the y and x-axis, saving them in FillsLuminosityEvolution{year};
   - [FillsLuminosityEvolution_parallel](https://github.com/GiuliaFaletti/LuminosityOptimization/blob/main/FillsLuminosityEvolution_parallel.py): Parallelized code that extracts from ATLAS_fill_{year} the Luminosity and Time arrays and plots them on the y and x-axis, saving them in FillsLuminosityEvolution{year};
   - [TurnArounData](https://github.com/GiuliaFaletti/LuminosityOptimization/blob/main/TurnAroundData.xlsx): Excel file with sorted statistical samples of turn around times (sample16, sample17, sample18).
