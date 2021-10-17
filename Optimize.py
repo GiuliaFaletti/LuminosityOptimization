@@ -869,8 +869,8 @@ while CONTROL1:
             """
             return np.sqrt(t_a)/(np.sqrt(N_i*n_c*Xi*S_int)) 
 
-        CONTROL4=True
-        while CONTROL4:
+        CONTROLz=True
+        while CONTROLz:
             #choose the previous year
             previous_year=input('Insert the  previous year: ')
 
@@ -879,6 +879,8 @@ while CONTROL1:
             if previous_year=='2016':
                 old_sample = np.array(data_ta16)
                 old_sample = old_sample.flatten('F')
+            elif previous_year=='end' or previous_year=='q':
+                 break  
             elif previous_year=='2017':    
                 old_sample = np.array(data_ta17)
                 old_sample = old_sample.flatten('F')
@@ -886,11 +888,7 @@ while CONTROL1:
                     old_sample = np.array(data_ta18)
                     old_sample = old_sample.flatten('F')
             elif previous_year!='2016' and previous_year!='2017' and previous_year!='2018': 
-                    print('Remember to compile the excel file present in the program directory\n\
-                        called Previous_Year_Data.xlsx where in a column called ta_stat\n\
-                        there must be the statistics sample for the old turnarund times\n\
-                            and in another column, average_ta, the average of the turnaround times.\n\
-                                Here should also be present the machine parameters for the current year.')
+                    print('Remember to compile the excel file present in the program directory\ncalled Previous_Year_Data.xlsx where in a column called ta_stat\nthere must be the statistics sample for the old turnarund times\nand in another column, average_ta, the average of the turnaround times.\nHere should also be present the machine parameters for the current year.')
                         
                     file = pd.read_excel(r'Previous_Year_Data.xlsx', sheet_name='Parameters')
                     #n_i
@@ -968,10 +966,12 @@ while CONTROL1:
             #evaluating the model parameters for the current year
             if current_year=='2016':
                 n_i, k_b, B_s, E_s, B_r, G_r, S_int, n_c, N_i, T_hc, T_ph, S_z, S_s, Fe, f_rev, Xi, Eps = lo.Parameters2016()
+            elif current_year=='end' or current_year=='q':
+                CONTROLz=False      
             elif current_year=='2017'or current_year=='linespace' or current_year=='single':    
                 n_i, k_b, B_s, E_s, B_r, G_r, S_int, n_c, N_i, T_hc, T_ph, S_z, S_s, Fe, f_rev, Xi, Eps = lo.Parameters2017()
             elif current_year=='2018': 
-                    n_i, k_b, B_s, E_s, B_r, G_r, S_int, n_c, N_i, T_hc, T_ph, S_z, S_s, Fe, f_rev, Xi, Eps = lo.Parameters2018()
+                n_i, k_b, B_s, E_s, B_r, G_r, S_int, n_c, N_i, T_hc, T_ph, S_z, S_s, Fe, f_rev, Xi, Eps = lo.Parameters2018()
             elif current_year!='2016' and previous_year!='2017' and previous_year!='2018': 
                     #Importing datas from the excel file
                     data = pd.read_excel(r'Current_Year_Data.xlsx')
@@ -982,12 +982,11 @@ while CONTROL1:
                     av_tta = pd.DataFrame(data, columns=['average_ta']).values.tolist()
                     
                     #importing the machine parameters
-                    param=input("Insert the current year machine parameters with a file or one by one. Enter 'file' in the first case and 'tip' in the latter.\n")
+                    param=input("Insert the current year machine parameters with a file or one by one.\n\
+                                 Enter 'file' in the first case and 'tip' in the latter.\n")
                     if param == 'file':
-                        print('Remember to compile the excel file present in the program directory\n\
-                        called Current_Year_Data.xlsx where in a column called ta_stat\n\
-                        there must be the statistics sample for the old turnarund times\n\
-                            and in another column, average_ta, the average of the turnaround times.\n\
+                        print('Remember to compile the excel file present in the program directory\ncalled Current_Year_Data.xlsx where in a column called ta_stat\nthere must be the statistics sample for the old turnarund times\n\
+                                and in another column, average_ta, the average of the turnaround times.\n\
                                 Here should also be present the machine parameters for the current year.')
                         
                         file2 = pd.read_excel(r'Current_Year_Data.xlsx', sheet_name='Parameters')
@@ -1180,6 +1179,10 @@ while CONTROL1:
                             print('You reach the nominal physics time!')
                             break 
             
+            #Exit
+            elif current_year=='end' or current_year=='q':
+                 break
+                 
             #2017 data                
             elif current_year=='2017':    
                 new_sample=np.array(data_ta17)
@@ -1435,10 +1438,11 @@ while CONTROL1:
                 average_Ta=np.array(average_Ta)
                 
                 while CONTROL:
-                    new_ta = input("Enter the new value of the turn around time, when the year ends or you want to exit print end.\nNew Turnaround time= ")
-                    if new_ta == "end" or new_ta == "End":
+                    new_ta = input("Enter the new value of the turn around time,\n\
+                                    when the year ends or when you want to exit print end.\nNew Turnaround time= ")
+                    if new_ta == "end" or new_ta == "End" or new_ta=='q':
                         CONTROL=False
-                    elif (new_ta != "end" or new_ta != "End") and (isanumber(new_ta) == True):
+                    elif (new_ta != "end" or new_ta != "End" or new_ta!='q') and (isanumber(new_ta) == True):
                         new_Sample = np.append(new_Sample, float(new_ta))
                         #evaluation of the everage turn around time and the corrispondent optimal fill time
                         if len(new_Sample)<= 30:
@@ -1450,7 +1454,7 @@ while CONTROL1:
                             if p_value>alpha:
                                 print('The new sample seems to be distributed according to the previous year distribution!')
                                 print('The new sample is:', new_Sample)
-                                choice= input('You want to discharge the last value? yes/no\n')    
+                                choice= input('Do you want to discharge the last value? yes/no\n')    
                                 if choice == 'yes':
                                     new_Sample=np.delete(new_Sample, len(new_Sample)-1)
                                     Weights = np.delete(Weights, len(Weights)-1)
@@ -1502,8 +1506,8 @@ while CONTROL1:
                             elif p_value<alpha:
                                 print('It seems that the new sample does not follow the old sample distribution!')
                                 print('The new sample is:', new_Sample )
-                                choice= input('You want to discharge the last value? yes/no\n')    
-                                if choice == 'yes':
+                                choice= input('Do you want to discharge the last value? yes/no\n')    
+                                if choice == 'yes' or choice=='q' or choice=='end':
                                     new_Sample=np.delete(new_Sample, len(new_Sample)-1)
                                     Weights = np.delete(Weights, len(Weights)-1)
                                     print('The new sample is:', new_Sample )
@@ -1561,7 +1565,7 @@ while CONTROL1:
                             print("The optimal fill time t_opt is:", t_opt/3600)      
             
                         
-                    elif (new_ta != "end" or new_ta != "End") and isanumber(new_ta) == False:   
+                    elif (new_ta != "end" or new_ta != "End" or new_ta!='q') and isanumber(new_ta) == False:   
                         print('You not enter a valid input! Here what you enter: ', new_ta)
 
 
@@ -1570,9 +1574,9 @@ while CONTROL1:
             print('The total physics time is now:', np.sum(Opt_Fill/3600)+np.sum(new_Sample), '[h]')
             writer.save()
             
-            end=input("You want to go back to the previous menu? yes/no\n")
-            if end=='yes':
-                CONTROL4=False
+            end=input("Do you want to go back to the previous menu? yes/no\n")
+            if end=='yes' or end=='end' or end=='q':
+                CONTROLz=False
             elif end=='no':
                 continue    
     
@@ -1604,7 +1608,11 @@ while CONTROL1:
               HnPl_mod = Model(HighNormalized_PowerLaw) 
               CONTROL3 = True
               while CONTROL3==True:
-                control3=input("-Enter 1: Fits with 3 different fitting functions;\n -Enter 2: Truncated Power Law Fit;\n-Enter 3: Average value of the turn around time;\n -Enter b to go back to the previous menu.\n")
+                control3=input("###########################################\n\
+                    -Enter 1: Fits with 3 different fitting functions;\n\
+                    -Enter 2: Truncated Power Law Fit;\n\
+                    -Enter 3: Average value of the turn around time;\n\
+                    -Enter b to go back to the previous menu.\n")
                 
                 #Fits with 3 different fitting functions
                 if control3=="1":
@@ -1732,7 +1740,11 @@ while CONTROL1:
               HnPl_mod = Model(HighNormalized_PowerLaw) 
               CONTROL3 = True
               while CONTROL3==True:
-                control3=input("-Enter 1: Fits with 3 different fitting functions;\n -Enter 2: Truncated Power Law Fit;\n-Enter 3: Average value of the turn around time;\n -Enter b to go back to the previous menu.\n")
+                control3=input("###########################################\n\
+                    -Enter 1: Fits with 3 different fitting functions;\n\
+                    -Enter 2: Truncated Power Law Fit;\n\
+                    -Enter 3: Average value of the turn around time;\n\
+                    -Enter b to go back to the previous menu.\n")
                 
                 #Fits with 3 different fitting functions
                 if control3=="1":
@@ -1856,7 +1868,11 @@ while CONTROL1:
                           
               CONTROL3 = True
               while CONTROL3==True:
-                control3=input("-Enter 1: Fits with 3 different fitting functions;\n -Enter 2: Truncated Power Law Fit;\n-Enter 3: Average value of the turn around time;\n -Enter b to go back to the previous menu.\n")
+                control3=input("###########################################\n\
+                    -Enter 1: Fits with 3 different fitting functions;\n\
+                    -Enter 2: Truncated Power Law Fit;\n\
+                    -Enter 3: Average value of the turn around time;\n\
+                    -Enter b to go back to the previous menu.\n")
                 
                 #Fits with 3 different fitting functions
                 if control3=="1":
@@ -1978,7 +1994,7 @@ while CONTROL1:
                             
               CONTROL3 = True
               while CONTROL3==True:
-                control3=input("###########################################\n\
+                control3=input("##############################################\n\
                     -Enter 1: Fits with 3 different fitting functions;\n\
                     -Enter 2: Truncated Power Law Fit;\n\
                     -Enter b to go back to the previous menu.\n")
