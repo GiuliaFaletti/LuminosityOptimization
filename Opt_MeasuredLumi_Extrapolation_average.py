@@ -151,6 +151,8 @@ for i in range(len(FillNumber16)):
              
         
         #performing fit of last segments of data
+        model.set_param_hint('b', value=0.2, min=0, max=100)
+        model.set_param_hint('d', value=0.2, min=0, max=100)
         fit_result=model.fit(L_fit, x=norm_T_fit, a=1, b=0.2, c=1, d=0.2)
         Y = fit(norm_X, fit_result.params['a'].value, fit_result.params['b'].value, fit_result.params['c'].value, fit_result.params['d'].value)
         print(fit_result.params['a'].value, fit_result.params['b'].value, fit_result.params['c'].value, fit_result.params['d'].value)
@@ -207,16 +209,6 @@ for i in range(len(FillNumber16)):
 
         Lumi_evol = np.array(Lumi_evol).flatten('F')
         Time = np.array(Time).flatten('F')
-        
-        #normalizing the time interval 
-        #norm_Time=[]
-        #norm_Time=np.array(norm_Time)
-        #for t in Time:
-            #z=(t-np.amin(Time))/(np.amax(Time)-np.amin(Time))
-            #norm_Time=np.append(norm_Time, z)
-        #Time1=Time   
-        #Time=norm_Time
-        
 
         ax.plot(Time, Lumi_evol*1e30, "r.", label='Luminosity Evolution', markersize=2)
         #ax.legend(loc='best')
@@ -345,6 +337,8 @@ for i in range(len(FillNumber17)):
             norm_X=np.append(norm_X, z)   
                     
         #performing fit of last segments of data
+        model.set_param_hint('b', value=0.2, min=0, max=100)
+        model.set_param_hint('d', value=0.2, min=0, max=100)
         fit_result=model.fit(L_fit, x=norm_T_fit, a=1, b=0.2, c=1, d=0.2)
         Y = fit(norm_X, fit_result.params['a'].value, fit_result.params['b'].value, fit_result.params['c'].value, fit_result.params['d'].value)
         print(fit_result.params['a'].value, fit_result.params['b'].value, fit_result.params['c'].value, fit_result.params['d'].value)
@@ -531,6 +525,8 @@ for i in range(len(FillNumber18)):
                 norm_X=np.append(norm_X, z)   
                         
             #performing fit of last segments of data
+            model.set_param_hint('b', value=0.2, min=0, max=100)
+            model.set_param_hint('d', value=0.2, min=0, max=100)
             fit_result=model.fit(L_fit, x=norm_T_fit, a=1, b=0.2, c=1, d=0.2)
             Y = fit(norm_X, fit_result.params['a'].value, fit_result.params['b'].value, fit_result.params['c'].value, fit_result.params['d'].value)
             print(fit_result.params['a'].value, fit_result.params['b'].value, fit_result.params['c'].value, fit_result.params['d'].value)

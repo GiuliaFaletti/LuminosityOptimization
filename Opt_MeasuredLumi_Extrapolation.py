@@ -1,7 +1,7 @@
 ##############################################################################################################################################
 # @Giulia Faletti
 # Extrapolating the luminosity evolution for smaller or longer fill times
-# based on the optimization model proposed
+# based on the optimization model proposed         
 ##############################################################################################################################################
 import numpy as np
 import pandas as pd

@@ -144,12 +144,14 @@ def func16(i):
              
         
         #performing fit of last segments of data
+        model.set_param_hint('b', value=0.2, min=0, max=100)
+        model.set_param_hint('d', value=0.2, min=0, max=100)
         fit_result=model.fit(L_fit, x=norm_T_fit, a=1, b=0.2, c=1, d=0.2)
         Y = fit(norm_X, fit_result.params['a'].value, fit_result.params['b'].value, fit_result.params['c'].value, fit_result.params['d'].value)
         #print(fit_result.params['a'].value, fit_result.params['b'].value, fit_result.params['c'].value, fit_result.params['d'].value)
         #if the double exponential grows changing the fit model --> one exponential
         if fit_result.params['b'].value <0 or fit_result.params['d'].value <0: 
-            #print('Single exponential!')
+            print('Single exponential!')
             def fit_lin(x, a2, b2):
                 return a2*np.exp((-b2)*x)
 
@@ -328,12 +330,15 @@ def func17(i):
             norm_X=np.append(norm_X, z)   
                     
         #performing fit of last segments of data
+        model.set_param_hint('b', value=0.2, min=0, max=100)
+        model.set_param_hint('d', value=0.2, min=0, max=100)
+        
         fit_result=model.fit(L_fit, x=norm_T_fit, a=1, b=0.2, c=1, d=0.2)
         Y = fit(norm_X, fit_result.params['a'].value, fit_result.params['b'].value, fit_result.params['c'].value, fit_result.params['d'].value)
         #print(fit_result.params['a'].value, fit_result.params['b'].value, fit_result.params['c'].value, fit_result.params['d'].value)
         #if the double exponential grows changing the fit model --> one exponential
         if fit_result.params['b'].value <0 or fit_result.params['d'].value <0: 
-            #print('Single exponential!')
+            print('Single exponential!')
             def fit_lin(x, a2, b2):
                 return a2*np.exp((-b2)*x)
 
@@ -504,12 +509,15 @@ def func18(i):
             norm_X=np.append(norm_X, z)   
                     
         #performing fit of last segments of data
+                
+        model.set_param_hint('b', value=0.2, min=0, max=100)
+        model.set_param_hint('d', value=0.2, min=0, max=100)
         fit_result=model.fit(L_fit, x=norm_T_fit, a=1, b=0.2, c=1, d=0.2)
         Y = fit(norm_X, fit_result.params['a'].value, fit_result.params['b'].value, fit_result.params['c'].value, fit_result.params['d'].value)
         #print(fit_result.params['a'].value, fit_result.params['b'].value, fit_result.params['c'].value, fit_result.params['d'].value)
         #if the double exponential grows changing the fit model --> one exponential
         if fit_result.params['b'].value <0 or fit_result.params['d'].value <0: 
-            #print('Single exponential!')
+            print('Single exponential!')
             def fit_lin(x, a2, b2):
                 return a2*np.exp((-b2)*x)
 
