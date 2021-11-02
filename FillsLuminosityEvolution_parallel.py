@@ -43,7 +43,7 @@ def func16(i):
        
      plt.close("all")
      fig,  ax = plt.subplots()
-     ax.plot(Times, L_evol*1e30, "r-", label='Luminosity Evolution')
+     ax.plot(Times, L_evol*1e30, "r+", label='Luminosity Evolution')
      ax.set_xlabel("Normalized Times")
      ax.set_ylabel("Luminosity [cm^2 s^-1]")
      ax.set_title('Luminosity evolution of fill {}'.format(text))
@@ -77,7 +77,7 @@ def func17(i):
      #plotting results  
      plt.close("all")
      fig,  ax = plt.subplots()
-     ax.plot(Times, L_evol*1e30, "r-", label='Luminosity Evolution')
+     ax.plot(Times, L_evol*1e30, "r+", label='Luminosity Evolution')
      ax.set_xlabel("Normalized Times")
      ax.set_ylabel("Luminosity [cm^2 s^-1]")
      ax.set_title('Luminosity evolution of fill {}'.format(text))
@@ -109,7 +109,7 @@ def func18(i):
           
      plt.close("all")
      fig,  ax = plt.subplots()
-     ax.plot(Times, L_evol*1e30, "r-", label='Luminosity Evolution')
+     ax.plot(Times, L_evol*1e30, "r+", label='Luminosity Evolution')
      #ax.legend(loc='best')
      ax.set_xlabel("Normalized Times")
      ax.set_ylabel("Luminosity [cm^2 s^-1]")

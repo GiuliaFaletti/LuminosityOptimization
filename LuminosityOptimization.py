@@ -291,4 +291,19 @@ def t_opt_eval(N_i, n_c, Xi, S_int, t_a):
       t_opt: optimal fill time
   """
   return np.sqrt(t_a)/(np.sqrt(N_i*n_c*Xi*S_int)) 
+
+def t_opt_eval_data(N_i, n_c, Xi, S_int, t_a):
+  """Evaluate the optimal fill time with the data model.
+
+  Args:
+      N_i(Any):
+      n_c (Any): [description]
+      Xi (Any): [description]
+      S_int (Any): [description]
+      t_a (Any): Turn Around time
+
+  Returns:
+      t_opt: optimal fill time
+  """
+  return np.sqrt(t_a)/(np.sqrt(N_i*n_c*Xi*S_int)) 
   

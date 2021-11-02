@@ -132,11 +132,11 @@ while CONTROL1:
                        print("________________________________________________________________")
                        print("_______________________Peak Luminosity__________________________")
                        print("|                                                               ")
-                       print("| L_model(0)) = ", L_inst*1e-4, "[cm^-2 s^-1]")
-                       print("| L_LHC(0) = 1.4e+34 cm^-2 s^-1")
+                       print("| L_model = ", L_inst*1e-4, "[cm^-2 s^-1]")
+                       print("| L_LHC = 1.4e+34 cm^-2 s^-1")
                        print("________________________________________________________________")
                    
-                   #Comparison between Optimal Fill Times and Fill Time Data
+                   #Comparison between Optimal Fill Times and Fill Time from Data
                    elif control3 == "3":
                        plt.close("all")
                        fig1, ax1 = plt.subplots()
@@ -735,8 +735,7 @@ while CONTROL1:
                print("|  T_ph=", T_ph_check/(3600*24), "N=", len(new_ta))
                print("|   L_tot_real_ta=", L_tot_real_ta/1e43, "[fb^-1]")
                print("________________________________________________________________")
-               
-               print(np.sum)    
+                  
                        
             #2017 Vincolated Analysis
             elif control2 == '5':
@@ -773,7 +772,7 @@ while CONTROL1:
                new_ta=np.array(new_ta)
                for i in data_ta17_sec:
                    if np.sum(new_ta)+np.sum(new_t_opt)<T_ph_data:
-                       new_t_opt=np.append(new_t_opt, t_opt16)
+                       new_t_opt=np.append(new_t_opt, t_opt17)
                        new_ta=np.append(new_ta, i)
                 
                L_tot_real_ta=len(new_t_opt)*L_int17
